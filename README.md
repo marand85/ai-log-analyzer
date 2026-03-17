@@ -67,8 +67,14 @@ cd ai-log-analyzer
 ```
 cd terraform
 cp terraform.tfvars.example terraform.tfvars
-Edit terraform.tfvars with your Anthropic API key
 ```
+Edit terraform.tfvars with your Anthropic API key (use your preferred editor):
+```
+nano terraform.tfvars
+# or: code terraform.tfvars
+# or: vim terraform.tfvars
+```
+
 3. Deploy infrastructure
 ```
 terraform init
