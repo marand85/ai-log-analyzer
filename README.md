@@ -59,36 +59,40 @@ ai-log-analyzer/
 ### Deployment
 
 1. Clone repository
-git clone <your-repo-url>
+```
+git clone https://github.com/marand85/ai-log-analyzer
 cd ai-log-analyzer
-
+```
 2. Configure variables
+```
 cd terraform
 cp terraform.tfvars.example terraform.tfvars
 Edit terraform.tfvars with your Anthropic API key
-
+```
 3. Deploy infrastructure
+```
 terraform init
 terraform apply
-
+```
 4. Get API endpoint
+```
 terraform output api_endpoint
-
+```
 ## Usage
 
 ### Test the API
-
+```
 curl -X POST https://your-api-endpoint/ai-log-analyzer \
   -H "Content-Type: application/json" \
   -d '{"logs": "ERROR 2025-01-16 12:00:00 Database connection timeout\nCRITICAL Payment processing failed"}'
-
+```
 ### Example Response
-
+```
 {
   "status": "success",
   "analysis": "## Log Analysis Report\n\n### Summary\n- Database timeout\n- Payment failure\n\n### Severity: CRITICAL\n\n### Recommended Actions\n- Check database connectivity\n- Review payment gateway status..."
 }
-
+```
 ## Key Features
 
 - Serverless - No infrastructure management
@@ -102,16 +106,21 @@ curl -X POST https://your-api-endpoint/ai-log-analyzer \
 ### Local Testing
 
 Package Lambda dependencies:
+```
 cd lambda
 pip install anthropic -t .
-
-Update code:
+```
+Update code (use your preferred editor):
+```
 nano lambda_function.py
-
+# or: code lambda_function.py
+# or: vim lambda_function.py
+```
 Redeploy:
+```
 cd ../terraform
 terraform apply
-
+```
 ## Security
 
 - API key stored as encrypted environment variable
@@ -140,11 +149,10 @@ Based on Free Tier + typical usage
 
 ## Author
 
-Jan Kowalski
+Mariusz Andrzejewski
 AI Platform Engineer
 
-- GitHub: https://github.com/your-username  
-- LinkedIn: https://linkedin.com/in/your-profile
+- GitHub: https://github.com/marand85/ai-log-analyzer  
 
 ## License
 
