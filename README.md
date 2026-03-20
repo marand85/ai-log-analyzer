@@ -59,45 +59,50 @@ ai-log-analyzer/
 ### Deployment
 
 1. Clone repository
-```
+``` bash
 git clone https://github.com/marand85/ai-log-analyzer
 cd ai-log-analyzer
 ```
 2. Configure variables
-```
+``` bash
 cd terraform
 cp terraform.tfvars.example terraform.tfvars
 ```
 Edit terraform.tfvars with your Anthropic API key (use your preferred editor):
-```
+``` bash
 nano terraform.tfvars
 # or: code terraform.tfvars
 # or: vim terraform.tfvars
 ```
 
 3. Deploy infrastructure
-```
+``` bash
 terraform init
 terraform apply
 ```
 4. Get API endpoint
-```
+``` bash
 terraform output api_endpoint
 ```
 ## Usage
 
 ### Test the API
-```
+``` bash
 curl -X POST https://your-api-endpoint/ai-log-analyzer \
   -H "Content-Type: application/json" \
   -d '{"logs": "ERROR 2025-01-16 12:00:00 Database connection timeout\nCRITICAL Payment processing failed"}'
 ```
 ### Example Response
-```
+``` code
 {
   "status": "success",
   "analysis": "## Log Analysis Report\n\n### Summary\n- Database timeout\n- Payment failure\n\n### Severity: CRITICAL\n\n### Recommended Actions\n- Check database connectivity\n- Review payment gateway status..."
 }
+```
+### ⚠️ Clean Up (Important)
+Always remember to destroy your infrastructure when you are done testing to avoid unexpected AWS charges:
+``` bash
+terraform destroy
 ```
 ## Key Features
 
@@ -112,18 +117,18 @@ curl -X POST https://your-api-endpoint/ai-log-analyzer \
 ### Local Testing
 
 Package Lambda dependencies:
-```
+``` bash
 cd lambda
 pip install anthropic -t .
 ```
 Update code (use your preferred editor):
-```
+``` bash
 nano lambda_function.py
 # or: code lambda_function.py
 # or: vim lambda_function.py
 ```
 Redeploy:
-```
+``` bash
 cd ../terraform
 terraform apply
 ```
